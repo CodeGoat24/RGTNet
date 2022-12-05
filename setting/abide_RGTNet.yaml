@@ -7,19 +7,15 @@ data:
   train_set: 0.7
   val_set: 0.1
   fold: 0
-#  time_seires: /data/CodeGoat24/FBNETGEN/ABIDE_pcp/abide.npy
-#  time_seires: /data/CodeGoat24/FBNETGEN_ho/ABIDE_pcp/abide.npy
-  time_seires: /data/CodeGoat24/FBNETGEN_AAL/ABIDE_pcp/abide.npy
-#  time_seires: /data/CodeGoat24/FBNETGEN_cc400/ABIDE_pcp/abide.npy
+  time_seires: /data/CodeGoat24/RGTNet_AAL/ABIDE_pcp/abide.npy
+
 
 
 
 
 model:
-  # seq, gnn, fbnetgen , BrainGCN, GraphTransformer
   type: GraphTransformer
 
-  # gru or cnn or attention or gau
   extractor_type: attention
   embedding_size: 8
   gcn_layer: 4
