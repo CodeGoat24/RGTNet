@@ -29,9 +29,6 @@ model:
   gcn_layer: 4
   window_size: 4
 
-  cnn_pool_size: 16
-
-  # product or linear
   graph_generation: product
 
   num_gru_layers: 4
