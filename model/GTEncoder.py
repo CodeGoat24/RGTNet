@@ -25,7 +25,7 @@ class FullyConnectedOutput(torch.nn.Module):
         out = out + x_clone
         return out
 
-# 注意力计算函数
+
 def attention(Q, K, V, is_cls):
 
     l = Q.shape[2]
@@ -35,7 +35,7 @@ def attention(Q, K, V, is_cls):
 
     score = torch.matmul(Q, K.permute(0, 1, 3, 2))
 
-    # 除以每个头尾数的平凡根，做数值缩放
+
     score /= d ** 0.5
 
 
