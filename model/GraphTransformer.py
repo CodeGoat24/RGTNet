@@ -42,8 +42,6 @@ class Embed2GraphByAttention(nn.Module):
 
         m = torch.matmul(Q, K.permute(0, 2, 1))
 
-        # 除以每个头尾数的平凡根，做数值缩放
-        # m /= d ** 0.5
 
         m = torch.softmax(m, dim=-1)
         return m
@@ -98,7 +96,7 @@ class GCNPredictor(nn.Module):
     def forward(self, m, node_feature):
         bz, node_num = m.shape[0], m.shape[1]
 
-        # 图卷积操作
+
         x_clone = node_feature.clone()
         x_clone[:, :, :] = 0
         x = node_feature
@@ -113,17 +111,17 @@ class GCNPredictor(nn.Module):
             x = x.reshape((bz, self.roi_num, -1))
             x_clone = x.clone()
 
-        # 加入cls token
+
         self.cls = self.cls.to(device)
         x_in = torch.empty(bz, node_num + 1, 16).to(device)
         for i in range(bz):
             x_in[i] = torch.cat((self.cls, x[i]), 0)  #按维数0拼接（竖着拼）
-        # 池化
+
         out, cor_matrix = self.pool(x_in)
 
         cor = cor_matrix.clone()
         cor = cor[:, :, 0, :].to(device)
-        # 计算score
+
         score = cor[:, 0, :]
         for i in range(3):
             score += cor[:, i + 1, :]
@@ -134,7 +132,7 @@ class GCNPredictor(nn.Module):
 
         l = int(node_num * self.pool_ratio)
         x_p = torch.empty(bz, l, 16).to(device)
-        # 保留重要结点
+
         x = out[:, 1:, :]
         score = score[:, :l]
         score = torch.softmax(score, dim=-1).unsqueeze(1)
@@ -144,7 +142,7 @@ class GCNPredictor(nn.Module):
         x_p = torch.matmul(score, x_p).squeeze(1)
 
 
-        # 拉平
+
         x = x_p.view(bz, -1)
         x = self.fcn(x)
         return x, torch.sigmoid(sc), cor_matrix
@@ -187,42 +185,3 @@ class GraphTransformer(nn.Module):
         edge_variance = torch.mean(torch.var(m.reshape((bz, -1)), dim=1))
 
         return self.predictor(m, nodes), m, edge_variance
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        # self.tfs = nn.ModuleList()
-        # self.tf_norm = nn.ModuleList()
-        # for i in range(self.num_layers_tf):
-        #     tf = Encoder(input_dim=32, num_head=4, embed_dim=8, is_cls=True)
-        #     norm = torch.nn.BatchNorm1d(8)
-        #     self.tfs.append(tf)
-        #     self.tf_norm.append(norm)
-
-        # for layer in range(self.num_layers_tf - 1):
-        #     x = x.reshape((bz * (self.roi_num + 1), -1))
-        #     x = self.tf_norm[layer](x)
-        #     x = x.reshape((bz, self.roi_num + 1, -1))
-        #     x, cor_matrix = self.tfs[layer + 1](x)
-
-        # x = x[:, 0, :]
-        # x = self.bn(x)
