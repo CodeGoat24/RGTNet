@@ -4,11 +4,13 @@
 > Yibin Wang, Haixia Long, Bo Tao, Jianwei Zheng
 > 
 > Under review
+> 
+![RGTNet](./RGTNet.png)
 
 Brain functional connectivity (FC) based on resting-state functional magnetic resonance imaging (rs-fMRI) has been in vogue to predict Autism Spectrum Disorder (ASD), which is a neuropsychiatric disease up the plight of locating latent biomarkers for clinical diagnosis. Albeit massive endeavors have been made, most studies are fed up with several chronic issues, such as the intractability of harnessing the interaction flourishing within brain regions, the astriction of representation due to vanishing gradient within deeper network architecture, the enormity of dimensionality resulted from excessive voxels in rs-fMRI samples, and the poor interpretability leading to unpersuasive diagnosis. To ameliorate these issues, a FC-learned Residual Graph Transformer, namely, RGTNet, is proposed. Specifically, we design a Graph Encoder to extract temporal-related features with long-range dependencies, from which interpretable FC matrices would be modelled. Besides, the residual trick is introduced to deepen the GCN architecture, thereby learning the higher-level information. Moreover, a novel Graph Sparse Fitting followed by a Weighted Node Aggregator, is proposed to ease dimensionality explosion and enhance the interpretability. Empirically, the results on two types of ABIDE data sets demonstrate the meliority of RGTNet. Notably, the achieved ACC metric reaches 73.4\%, overwhelming most competitors with merely 70.9\% on the AAL atlas using five-fold cross-validation policy. Moreover, the investigated biomarkers concord closely with the authoritative medical knowledge, paving a viable way for ASD-clinical diagnosis.
 
 
-![RGTNet](./RGTNet.png)
+
 ![Biomarkers](./Biomarkers.png)
 
 ### ABIDE
