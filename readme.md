@@ -3,7 +3,7 @@
 > 
 > Yibin Wang, Haixia Long, Bo Tao, Jianwei Zheng
 > 
-> Under review
+> Accepted by Computer Methods and Programs in Biomedicine
 > 
 ![RGTNet](./RGTNet.png)
 
