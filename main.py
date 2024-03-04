@@ -63,7 +63,6 @@ if __name__ == '__main__':
     parser.add_argument('--repeat_time', default=50, type=int)
     args = parser.parse_args()
     torch.cuda.set_device(2)
-    # 控制随机性
     seed = 12344
     random.seed(seed)
     np.random.seed(seed)
