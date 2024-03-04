@@ -88,11 +88,11 @@ def main(args):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Classification of the ABIDE dataset using a Ridge classifier. '
                                                  'MIDA is used to minimize the distribution mismatch between ABIDE sites')
-    parser.add_argument('--atlas', default='ho',
+    parser.add_argument('--atlas', default='cc200',
                         help='Atlas for network construction (node definition) options: ho, cc200, cc400, default: cc200.')
     parser.add_argument('--seed', default=123, type=int, help='Seed for random initialisation. default: 1234.')
     parser.add_argument('--nclass', default=2, type=int, help='Number of classes. default:2')
-    parser.add_argument('--root_path', default="/data/CodeGoat24/FBNETGEN_ho/", type=str, help='The path of the folder containing the dataset folder.')
+    parser.add_argument('--root_path', default="/data/CodeGoat24/cc200/", type=str, help='The path of the folder containing the dataset folder.')
     parser.add_argument('--id_file_path', default="subject_IDs.txt", type=str, help='The path to subject_IDs.txt.')
 
 
