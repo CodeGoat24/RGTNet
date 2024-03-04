@@ -176,23 +176,6 @@ class BasicTrain:
             test_result, con_matrix = self.test_per_epoch(self.test_dataloader,
                                               self.test_loss, self.test_accuracy)
 
-            # if round(self.best_acc_val,1) < round(self.val_accuracy.avg,1):
-            #     self.best_acc_val = self.val_accuracy.avg
-            #     self.best_model = self.model
-            #     self.best_acc = self.test_accuracy.avg
-            # elif round(self.best_acc_val,1) == round(self.val_accuracy.avg,1):
-            #     if self.test_accuracy.avg > self.best_acc:
-            #         self.best_model = self.model
-            #         self.best_acc = self.test_accuracy.avg
-
-            # if round(self.best_auc_val,2) < round(val_result[0],2):
-            #     self.best_auc_val = val_result[0]
-            #     self.best_model = self.model
-            #     self.best_acc = self.test_accuracy.avg
-            # elif round(self.best_auc_val,2) == round(val_result[0],2):
-            #     if self.test_accuracy.avg > self.best_acc:
-            #         self.best_model = self.model
-            #         self.best_acc = self.test_accuracy.avg
 
             if self.best_acc <= self.test_accuracy.avg:
                 self.best_acc = self.test_accuracy.avg
