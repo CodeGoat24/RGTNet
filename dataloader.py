@@ -212,38 +212,11 @@ def init_dataloader(dataset_config):
         labels,
         pseudo_arr
     )
-    # show 时间序列
-    # plt.plot(final_fc[0].numpy())
-    # plt.title('Timeseries for single subject shown for 122 brain regions')
-    # plt.xlabel('Number of regions')
-    # plt.ylabel('Normalized signal')
-    # plt.show()
-
-
-
-    # measure = 'partial correlation'
-    # connectivity = ConnectivityMeasure(kind='correlation')
-    # connectivity_matrices = connectivity.fit_transform(final_fc[1].T.unsqueeze(0).numpy())
-    # mean_connectivity_matrices = connectivity_matrices.mean(axis=0)
-    #
-    # # Visualizing goes here
-    #
-    # csv_reader = csv.reader(open('aal_labels.csv', encoding='utf-8'))
-    # label = [row[1] for row in csv_reader]
-    # print(label)
-    # plotting.plot_matrix(mean_connectivity_matrices, figure=(10, 8), labels=label[2:], vmax=0.8, vmin=-0.8, colorbar=True, reorder=True, title="")
-    # plotting.show()
 
 
 
 
 
-    # train_dataloader, val_dataloader, test_dataloader = cross_val(final_fc, final_pearson, labels, pseudo_arr)
-
-
-    # train_dataset = torch.utils.data.Subset(dataset, tr_index)
-    # val_dataset = torch.utils.data.Subset(dataset, val_index)
-    # test_dataset = torch.utils.data.Subset(dataset, te_index)
 
     train_dataset, val_dataset, test_dataset = torch.utils.data.random_split(
         dataset, [train_length, val_length, length-train_length-val_length])
