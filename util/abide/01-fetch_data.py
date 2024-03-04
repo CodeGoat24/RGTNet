@@ -58,10 +58,10 @@ def main(args):
 
 
     # Download database files
-    # if download == True:
-    #     abide = datasets.fetch_abide_pcp(data_dir=root_folder, pipeline=pipeline,
-    #                                      band_pass_filtering=True, global_signal_regression=False, derivatives=files,
-    #                                      quality_checked=False)
+    if download == True:
+        abide = datasets.fetch_abide_pcp(data_dir=root_folder, pipeline=pipeline,
+                                          band_pass_filtering=True, global_signal_regression=False, derivatives=files,
+                                          quality_checked=False)
     reader = Reader(root_folder, args.id_file_path)
     subject_IDs = reader.get_ids() #changed path to data path
     subject_IDs = subject_IDs.tolist()
@@ -93,11 +93,11 @@ if __name__ == '__main__':
     parser.add_argument('--pipeline', default='cpac', type=str,
                         help='Pipeline to preprocess ABIDE data. Available options are ccs, cpac, dparsf and niak.'
                              ' default: cpac.')
-    parser.add_argument('--atlas', default='ho',
+    parser.add_argument('--atlas', default='cc200',
                         help='Brain parcellation atlas. Options: ho, cc200 and cc400, default: cc200.')
     parser.add_argument('--download', default=True, type=str2bool,
                         help='Dowload data or just compute functional connectivity. default: True')
-    parser.add_argument('--root_path', default="/data/CodeGoat24/FBNETGEN_ho/", type=str, help='The path of the folder containing the dataset folder.')
+    parser.add_argument('--root_path', default="/data/CodeGoat24/cc200", type=str, help='The path of the folder containing the dataset folder.')
     parser.add_argument('--id_file_path', default="subject_IDs.txt", type=str, help='The path to subject_IDs.txt.')
     args = parser.parse_args()
     main(args)
